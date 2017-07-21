@@ -1,10 +1,11 @@
-setwd("C:\\Users\\student\\Desktop")
-install.packages("wordcloud2")
+
+install.packages("tm")
+library(tm)
 library(KoNLP)
 library(wordcloud2)
 library(RColorBrewer)
 useSejongDic() 
-txt <- readLines("a.txt") 
+txt <- readLines("b.txt",encoding = "UTF-8") 
 txt
 data2<-sapply(txt,extractNoun,USE.NAMES = F)
 data2
@@ -18,14 +19,21 @@ data3<-gsub("\\(", "[", data3)
 data3<-gsub("\\)", "]", data3)
 data3<-gsub(";", "", data3)
 data3<-gsub("\n", "", data3)
+data3<-gsub("'",'"',data3)
+data3 <-gsub("[[:punct:]]+", "", data3)
+data3<-removePunctuation(data3,preserve_intra_word_dashes = TRUE)
 data3<-gsub("[[:cntrl:]]","",data3)
+data3<-Filter(function(x){nchar(x)>=2},data3)
 write(unlist(data3),"cloudcomputing2.txt")
-data4<-read.table("cloudcomputing2.txt")
+data4<-read.table("cloudcomputing2.txt",quote="")
+?read.table()
 wordcount<-table(data4)
 wordcount
-png("c.png")
-palete<-(brewer.pal(4,"Set2"))
-wordcloud2(names(wordcount),freq=wordcount,rot.per=0.25,min.freq = 3,
-          random.order=F,random.color=T,colors=palete)
-dev.off()
-?wordcloud2
+#png("a.png")
+
+
+
+
+windowsFonts(font=windowsFont("ÈÞ¸ÕÆíÁöÃ¼"))
+wordcloud2(wordcount,figPath="logo.png",size = 0.7, fontFamily="ÈÞ¸ÕÆíÁöÃ¼",color='random-dark' , backgroundColor="white",minSize=5,gridSize=8)
+
