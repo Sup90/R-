@@ -1,16 +1,16 @@
-#ë¹„ìŠ¤ë‹ˆìŠ¤í™œìš©ì‚¬ë¡€ë¡œ ë°°ìš°ëŠ” ë°ì´í„°ë¶„ì„06ìž¥ 
-#ìµœì í™” ë¬¸ì œ
-#ë¬¸ì œì¸ì‹
-#ê´‘ê³ ì™€ ì‹ ê·œ ìœ ì €ìˆ˜ì˜ ì¸ê³¼ê´€ê³„ ë¶„ì„
+#ºñ½º´Ï½ºÈ°¿ë»ç·Ê·Î ¹è¿ì´Â µ¥ÀÌÅÍºÐ¼®06Àå 
+#ÃÖÀûÈ­ ¹®Á¦
+#¹®Á¦ÀÎ½Ä
+#±¤°í¿Í ½Å±Ô À¯Àú¼öÀÇ ÀÎ°ú°ü°è ºÐ¼®
 #CPI-> Cost Per Install
-#ê´‘ê³ ìƒí’ˆì— í•´ë‹¹í•˜ëŠ” ì• í”Œë¦¬ì¼€ì´ì…˜ì´ ì„¤ì¹˜ëœ ê¸°ê¸° ìˆ˜ì— 
-#ë”°ë¼ ê´‘ê³  ë¹„ìš©ì„ ì§€ë¶ˆí•˜ëŠ” ë°©ì‹. 
-#ë‹¤ìš´ë¡œë“œë¡œ ì¸í•œ ì‚¬ìš©ìž ìœ ìž…ì€ ë¬¼ë¡ , 
-#ì¸ê¸°ìˆœìœ„ ìƒìŠ¹ê¹Œì§€ ë…¸ë ¤ë³¼ ìˆ˜ ìžˆê¸° ë•Œë¬¸ì— 
-#ëª¨ë°”ì¼ ê²Œìž„ì—ì„œ ì£¼ë¡œ ì‚¬ìš©ëœë‹¤.
-#TVì™€ ìž¡ì§€ì˜ ê´‘ê³ ë¹„ì™€ íšë“ ìœ ì €ìˆ˜ ê´€ê³„ íŒŒì•…
-#ì´ë¥¼ í†µí•´ TVì™€ ìž¡ì§€ì— ê´‘ê³  ë¹„ìœ¨ ê²°ì •
-#ì¤‘íšŒê·€ ë¶„ì„ì„ í†µí•´ ê´‘ê³ ë¹„ìš©ê³¼ ì‹ ê·œ ìœ ì €ê°„ì˜ ê´€ê³„ë¥¼ íŒŒì•…
+#±¤°í»óÇ°¿¡ ÇØ´çÇÏ´Â ¾ÖÇÃ¸®ÄÉÀÌ¼ÇÀÌ ¼³Ä¡µÈ ±â±â ¼ö¿¡ 
+#µû¶ó ±¤°í ºñ¿ëÀ» ÁöºÒÇÏ´Â ¹æ½Ä. 
+#´Ù¿î·Îµå·Î ÀÎÇÑ »ç¿ëÀÚ À¯ÀÔÀº ¹°·Ð, 
+#ÀÎ±â¼øÀ§ »ó½Â±îÁö ³ë·Áº¼ ¼ö ÀÖ±â ¶§¹®¿¡ 
+#¸ð¹ÙÀÏ °ÔÀÓ¿¡¼­ ÁÖ·Î »ç¿ëµÈ´Ù.
+#TV¿Í ÀâÁöÀÇ ±¤°íºñ¿Í È¹µæ À¯Àú¼ö °ü°è ÆÄ¾Ç
+#ÀÌ¸¦ ÅëÇØ TV¿Í ÀâÁö¿¡ ±¤°í ºñÀ² °áÁ¤
+#ÁßÈ¸±Í ºÐ¼®À» ÅëÇØ ±¤°íºñ¿ë°ú ½Å±Ô À¯Àú°£ÀÇ °ü°è¸¦ ÆÄ¾Ç
 getwd()
 setwd("R-/bussiness_prac/R/")
 ad_result<-read.csv("ad_result.csv",header = T,stringsAsFactors = F)
@@ -18,29 +18,29 @@ head(ad_result)
 library(ggplot2)
 library(scales)
 ggplot(ad_result,aes(tvcm,install))+geom_point()+
-  xlab("TV ê´‘ê³ ë¹„")+
-  ylab("ì‹ ê·œ ìœ ì €ìˆ˜")+
+  xlab("TV ±¤°íºñ")+
+  ylab("½Å±Ô À¯Àú¼ö")+
   scale_x_continuous(labels = comma)+
   scale_y_continuous(labels=comma)
 
 ggplot(ad_result,aes(magazine,install))+geom_point()+
-  xlab("ìž¡ì§€ ê´‘ê³ ë¹„")+
-  ylab("ì‹ ê·œ ìœ ì €ìˆ˜")+
+  xlab("ÀâÁö ±¤°íºñ")+
+  ylab("½Å±Ô À¯Àú¼ö")+
   scale_x_continuous(labels = comma)+
   scale_y_continuous(labels=comma)
-#ì¤‘íšŒê·€ ë¶„ì„ ì‹¤í–‰
+#ÁßÈ¸±Í ºÐ¼® ½ÇÇà
 lm1<-lm(install~.,data=ad_result[,c("install","tvcm","magazine")])
 lm1        
-#ì ˆíŽ´ 188.71, tvê´‘ê³  íšŒê·€ê³„ìˆ˜ 0.136, ìž¡ì§€ê´‘ê³ ë¹„ íšŒê·€ê³„ìˆ˜ 0.725
+#ÀýÆì 188.71, tv±¤°í È¸±Í°è¼ö 0.136, ÀâÁö±¤°íºñ È¸±Í°è¼ö 0.725
 summary(lm1)
 # Residuals:
 #   Min       1Q   Median       3Q      Max 
 # -1406.87  -984.49   -12.11   432.82  1985.84 
-#1ë¶„ìœ„ìˆ˜ì˜ ì ˆëŒ“ê°’ì´ 3ë¶„ìœ„ìˆ˜ì˜ ì ˆëŒ“ê°’ë³´ë‹¤ ì»¤ ì•½ê°„ì˜ ì¹˜ìš°ì¹¨ì€ ìžˆì§€ë§Œ
-#ìˆ˜ì •ëœ ê²°ì •ê³„ìˆ˜ê°€ 0.92ë¡œ ë†’ê¸° ë•Œë¬¸ì— ì˜ì‚¬ê²°ì •ì— ë¬¸ì œëŠ” ì—†ëŠ” ê²ƒìœ¼ë¡œ ë³´ìž„
+#1ºÐÀ§¼öÀÇ Àý´ñ°ªÀÌ 3ºÐÀ§¼öÀÇ Àý´ñ°ªº¸´Ù Ä¿ ¾à°£ÀÇ Ä¡¿ìÄ§Àº ÀÖÁö¸¸
+#¼öÁ¤µÈ °áÁ¤°è¼ö°¡ 0.92·Î ³ô±â ¶§¹®¿¡ ÀÇ»ç°áÁ¤¿¡ ¹®Á¦´Â ¾ø´Â °ÍÀ¸·Î º¸ÀÓ
 # Coefficients:
 #   Estimate Std. Error t value Pr(>|t|)   
 # (Intercept)  188.1743  7719.1308   0.024  0.98123   
 # tvcm           1.3609     0.5174   2.630  0.03390 * 
 # magazine       7.2498     1.6926   4.283  0.00364 **
-# ìž¡ì§€ì˜ ê´‘ê³  íš¨ê³¼ê°€ ë” ë†’ì€ ê²ƒìœ¼ë¡œ ë³´ì¸ë‹¤.
+# ÀâÁöÀÇ ±¤°í È¿°ú°¡ ´õ ³ôÀº °ÍÀ¸·Î º¸ÀÎ´Ù.
