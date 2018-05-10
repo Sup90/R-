@@ -90,7 +90,7 @@ a<-kmeans(user.action[,-c(1:3)],centers = 3)
 head(a)
 a$cluster
 user.action$cluster<-a$cluster
-train.user.action<-scale(user.action[])
+train.user.action<-scale(user.action)
 user.action[complete.cases(user.action)==T,]
 user.action[]
 head(user.action2)
@@ -163,6 +163,7 @@ ggplot(user.action.km,
        aes(x=PC1,y=PC2,col=as.factor(cluster),shape=as.factor(cluster)))+
   geom_point()
 user.action.f.filtered$cluster<-user.action.km$cluster
+user.action.f.filtered
 user.action.f.center<-ldply(lapply(sort(unique(user.action.f.filtered$cluster)),
   function(i){
     x<-user.action.f.filtered[user.action.f.filtered$cluster==i,
@@ -170,4 +171,31 @@ user.action.f.center<-ldply(lapply(sort(unique(user.action.f.filtered$cluster)),
     apply(x,2,function(d) mean(d))
       }))
 install.packages("fmsb")
+user.action.f.center
 library("fmsb")
+radarchartframe<-function(df){
+  df<- data.frame(df)
+  dfmax<-apply(df,2,max)+1
+  dfmin<-apply(df,2,min)-1
+  as.data.frame(rbind(dfmax,dfmin,df))
+}
+#상관관계 높은 변수 제외
+user.action.f.center
+df<-user.action.f.center[,-(ncol(user.action.f.center)-1)]
+(ncol(user.action.f.center)-1)
+ncol(user.action.f.center)
+df.cor<-cor(df)
+df.cor
+df.highly.cor<-findCorrelation(df.cor,cutoff = 0.91)
+df.filtered<-df[,-df.highly.cor]
+df.filtered<-radarchartframe(scale(df.filtered))
+names(df.filtered)
+user.action.f.filtered$user_id<-as.numeric(row.names(user.action.f.filtered))
+user.action.f.filtered
+user.kpi<-merge(user.action.f.filtered,mau,by=
+                  "user_id")
+ddply(user.kpi,.(cluster),summarize,
+      arpu=round(mean(payment)),
+      access_days=round(mean(access_days)))
+user.kpi
+#다시 봐야할 파트... 어렵다...
