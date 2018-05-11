@@ -4,6 +4,8 @@
 #그다음 7~13일의 접속 비율이 목적변수
 library(plyr)
 library(foreach)
+getwd()
+setwd("c://Users//DS//Documents//R-//bussiness_prac//R")
 readinstall<-function(app.name,target.day){
   base.dir<-"sample-data/section9/snapshot/install"
     f<-sprintf("%s/%s/%s/install.csv",base.dir,app.name,target.day)
@@ -80,3 +82,8 @@ library(reshape2)
 battle.inst2$elapsed_days<-paste0("d",battle.inst2$elapsed_days)
 battle.inst2.cast<-dcast(battle.inst2,user_id~elapsed_days,value.var = "count",sum)
 head(battle.inst2.cast)
+
+battle.inst2.cast.prop<-battle.inst2.cast
+battle.inst2.cast.prop[,-1]<-
+  battle.inst2.cast.prop[,-1]/rowSums(battle.inst2.cast.prop[,-1])
+
